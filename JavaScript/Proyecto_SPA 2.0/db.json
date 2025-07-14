@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "name": "Admin",
+      "email": "admin@admin.com",
+      "phone": "1234567890",
+      "enrollNumber": "98765432100000",
+      "dateOfAdmission": "2025-07-11",
+      "role": "admin",
+      "id": "1"
+    },
+    {
+      "name": "Visitantess",
+      "email": "visitor@ejemplo.com",
+      "phone": "0987654321",
+      "enrollNumber": "12345678900000",
+      "dateOfAdmission": "2025-07-11",
+      "role": "visitor",
+      "password": "1234",
+      "id": "2"
+    }
+  ],
+  "courses": [
+    {
+      "title": "Introducción a JavaScript",
+      "description": "Curso básico de JavaScript",
+      "startDate": "2025-07-16",
+      "duration": "4 semanas",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "title": "Python Avanzado",
+      "description": "Curso avanzado de programación en Python",
+      "startDate": "20-Aug-2025",
+      "duration": "6 semanas"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "1",
+      "userId": 2,
+      "courseId": 1
+    }
+  ]
+}

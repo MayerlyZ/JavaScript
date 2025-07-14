@@ -1,0 +1,20 @@
+{
+  "estudiantes": [
+    {
+      "id": "1",
+      "name": "Andres gonzalez",
+      "email": "Afg@ejemplo.com",
+      "phone": "1234567890",
+      "enrollNumber": "12345678901234",
+      "dateOfAdmission": "08-Dec-2021"
+    },
+    {
+      "id": "6203",
+      "name": "andres",
+      "email": "andres2502@gmail.com",
+      "phone": "3054526165",
+      "enrollNumber": "3454",
+      "dateOfAdmission": "25/02/2004"
+    }
+  ]
+}
