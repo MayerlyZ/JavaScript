@@ -1,0 +1,142 @@
+{
+  "users": [
+    {
+      "name": "Administrador",
+      "email": "admin@admin.com",
+      "phone": "1234567890",
+      "enrollNumber": "98765432100000",
+      "dateOfEvent": "2025-07-03",
+      "role": "admin",
+      "password": "1234",
+      "id": "1"
+    },
+    {
+      "name": "Visitantess",
+      "email": "visitor@ejemplo.com",
+      "phone": "0987654321",
+      "enrollNumber": "12345678900000",
+      "dateOfEvents": "2025-07-11",
+      "role": "visitor",
+      "password": "1234",
+      "id": "2"
+    }
+  ],
+  "events": [
+    {
+      "title": "Matrimonio",
+      "description": "Matrimonio en casa Cartagena",
+      "startDate": "2025-07-02",
+      "capacity": "20",
+      "id": "1"
+    },
+    {
+      "title": "Jardin Botánico",
+      "description": "Celebracion cumpleaños mio",
+      "startDate": "2025-08-01",
+      "capacity": "20",
+      "id": "2"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "1",
+      "userId": 2,
+      "eventId": 1
+    },
+    {
+      "id": "774f",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "d079",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "afea",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "02c5",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "5417",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "09a6",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "de9b",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "05df",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "964d",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "09a2",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "aea8",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "a3cc",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "0949",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "c493",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "9898",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "846c",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "4777",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "d3d1",
+      "userId": 2,
+      "eventId": null
+    },
+    {
+      "id": "ea5e",
+      "userId": 2,
+      "eventId": null
+    }
+  ]
+}
