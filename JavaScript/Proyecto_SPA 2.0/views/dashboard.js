@@ -1,9 +1,9 @@
 import { createFormComponent } from '../components/form.js';
-import { createCourseFormComponent } from '../components/courseForm.js';
-import { getCurrentUser, logout } from '../js/auth.js'; // Referencias de vista y de fucniones
-import { getUsers, getCourses, getCourseById } from '../js/api.js';
+import { createEventFormComponent } from '../components/eventForm.js';
+import { getCurrentUser, logout } from '../js/auth.js'; // Referencias de vista y de funciones
+import { getUsers, getEvent, getEventById } from '../js/api.js';
 
-// Funcion para mostrar el dashboard, los usuarios y los cursos
+// Funcion para mostrar el dashboard, los usuarios y los eventos
 export function dashboardView() {
   const user = getCurrentUser();
   if (!user || user.role !== 'admin') {
@@ -22,7 +22,7 @@ export function dashboardView() {
       <ul>
         <li><a href="#/dashboard">Dashboard</a></li>
         <li><a href="#/admin/users">Gestionar Usuarios</a></li>
-        <li><a href="#/admin/courses">Gestionar Cursos</a></li>
+        <li><a href="#/admin/courses">Gestionar eventos</a></li>
       </ul>
     </nav>
     <main class="dashboard-main">
@@ -46,7 +46,7 @@ export function dashboardView() {
               <thead>
                 <tr><th>ID</th><th>Título</th><th>Descripción</th><th>Fecha de Inicio</th><th>Duración</th><th>Acciones</th></tr>
               </thead>
-              <tbody id="courses-table"></tbody>
+              <tbody id="events-table"></tbody>
             </table>
           </div>
         </section>
@@ -87,29 +87,29 @@ export function dashboardView() {
     });
   });
 
-  // Construccion de la tabla de cursos
-  const coursesTable = container.querySelector('#courses-table');
-  getCourses().then((courses) => {
-    courses.forEach((course) => {
+  // Construccion de la tabla de eventos
+  const eventsTable = container.querySelector('#events-table');
+  getEvent().then((events)=> {
+    events.forEach((events) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${course.id}</td>
-        <td>${course.title}</td>
-        <td>${course.description}</td>
-        <td>${course.startDate}</td>
-        <td>${course.duration}</td>
-        <td><button class="edit-course" data-id="${course.id}">Editar</button></td>
+        <td>${events.id}</td>
+        <td>${events.title}</td>
+        <td>${events.description}</td>
+        <td>${events.startDate}</td>
+        <td>${events.duration}</td>
+        <td><button class="edit-event" data-id="${events.id}">Editar</button></td>
       `;
-      coursesTable.appendChild(tr);
+      eventsTable.appendChild(tr);
     });
 
-    // Funcion para editar los cursos
-    container.querySelectorAll('.edit-course').forEach((btn) => {
+    // Funcion para editar los eventos
+    container.querySelectorAll('.edit-event').forEach((btn) => {
       btn.addEventListener('click', async () => {
-        const courseData = await getCourseById(btn.dataset.id); // Busca los botones con ese selector, envia los datos a la funcion createCourseFormComponent
-        const form = createCourseFormComponent({ mode: 'edit', course: courseData, onSubmit: () => window.location.reload() });
+        const eventData = await getEventById(btn.dataset.id); // Busca los botones con ese selector, envia los datos a la funcion createCourseFormComponent
+        const form = createEventFormComponent({ mode: 'edit', event: eventData, onSubmit: () => window.location.reload() });
         container.appendChild(form.element);
-        form.loadCourse(btn.dataset.id);
+        form.loadEvent(btn.dataset.id);
       });
     });
   });

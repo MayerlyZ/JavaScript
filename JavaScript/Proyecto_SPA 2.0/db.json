@@ -20,20 +20,20 @@
       "id": "2"
     }
   ],
-  "courses": [
+  "events": [
     {
-      "title": "Introducción a JavaScript",
-      "description": "Curso básico de JavaScript",
+      "id": "1",
+      "title": "Matrimonio",
+      "description": "Matrimonio en cas Cartagena",
       "startDate": "2025-07-16",
-      "duration": "4 semanas",
-      "id": "1"
+      "duration": "12 horas"
     },
     {
       "id": "2",
-      "title": "Python Avanzado",
-      "description": "Curso avanzado de programación en Python",
+      "title": "Jardin Botánico",
+      "description": "Celebracion cumpleaños",
       "startDate": "20-Aug-2025",
-      "duration": "6 semanas"
+      "duration": "3 horas"
     }
   ],
   "enrollments": [

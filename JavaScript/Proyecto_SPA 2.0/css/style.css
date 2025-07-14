@@ -7,21 +7,21 @@
    =============================================== */
 :root {
   /* Colores principales - Tema educativo */
-  --primary-color: #2563eb;          /* Azul educativo */
-  --primary-dark: #1d4ed8;           /* Azul oscuro */
+  --primary-color: #ffffff;          /* Azul educativo */
+  --primary-dark: #c9ccd4;           /* Azul oscuro */
   --primary-light: #3b82f6;          /* Azul claro */
   --secondary-color: #10b981;        /* Verde éxito */
   --accent-color: #f59e0b;           /* Naranja acento */
   --danger-color: #ef4444;           /* Rojo peligro */
   
   /* Colores de fondo */
-  --bg-primary: #f8fafc;             /* Fondo principal */
+  --bg-primary: #f0abf0;             /* Fondo principal */
   --bg-secondary: #ffffff;           /* Fondo secundario */
-  --bg-sidebar: #1e293b;             /* Fondo sidebar */
-  --bg-header: #0f172a;              /* Fondo header */
+  --bg-sidebar: #db9d9d;             /* Fondo sidebar */
+  --bg-header: #da868a;              /* Fondo header */
   
   /* Colores de texto */
-  --text-primary: #1e293b;           /* Texto principal */
+  --text-primary: black;           /* Texto principal */
   --text-secondary: #64748b;         /* Texto secundario */
   --text-light: #ffffff;             /* Texto claro */
   --text-muted: #94a3b8;             /* Texto atenuado */
@@ -90,7 +90,7 @@ body {
    HEADER - ENCABEZADO PRINCIPAL
    =============================================== */
 header {
-  background: linear-gradient(135deg, var(--bg-header) 0%, var(--primary-dark) 100%);
+  background: #64748b;
   color: var(--text-light);
   padding: var(--spacing-lg) var(--spacing-xl);
   display: flex;
@@ -245,9 +245,9 @@ main table {
 /* Regla específica para prevenir superposición con sidebar */
 main form,
 main #user-form,
-main #course-form,
+main #event-form,
 main #user-form form,
-main #course-form form {
+main #event-form form {
   position: relative !important;
   left: 0 !important;
   margin-left: 0 !important;
@@ -441,7 +441,7 @@ button:hover,
 
 /* Botón de editar */
 .edit-user,
-.edit-course {
+.edit-event {
   background: linear-gradient(135deg, var(--secondary-color), #059669);
   color: var(--text-light);
   padding: var(--spacing-sm) var(--spacing-md);
@@ -450,13 +450,13 @@ button:hover,
 }
 
 .edit-user:hover,
-.edit-course:hover {
+.edit-event:hover {
   background: linear-gradient(135deg, #10b981, var(--secondary-color));
 }
 
 /* Botón de eliminar */
 .delete-user,
-.delete-course {
+.delete-event {
   background: linear-gradient(135deg, var(--danger-color), #dc2626);
   color: var(--text-light);
   padding: var(--spacing-sm) var(--spacing-md);
@@ -464,7 +464,7 @@ button:hover,
 }
 
 .delete-user:hover,
-.delete-course:hover {
+.delete-event:hover {
   background: linear-gradient(135deg, #ef4444, var(--danger-color));
 }
 
@@ -610,7 +610,7 @@ main ul:not(.sidebar ul) {
 /* Asegurar que los formularios en admin no se superpongan */
 .admin-main .form-container form,
 .admin-main #user-form form,
-.admin-main #course-form form {
+.admin-main #event-form form {
   position: relative !important;
   left: 0 !important;
   margin-left: 0 !important;
@@ -625,7 +625,7 @@ main ul:not(.sidebar ul) {
    CONTENEDORES DINÁMICOS Y FORMULARIOS
    =============================================== */
 #user-form,
-#course-form {
+#event-form {
   position: relative;
   display: block;
   width: 100%;
@@ -637,7 +637,7 @@ main ul:not(.sidebar ul) {
 
 /* Asegurar que los formularios dentro de estos contenedores tengan el espaciado correcto */
 #user-form form,
-#course-form form {
+#event-form form {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -657,7 +657,7 @@ main ul:not(.sidebar ul) {
 
 /* Contenedores de elementos creados dinámicamente */
 #user-form > div,
-#course-form > div {
+#event-form > div {
   position: relative;
   width: 100%;
   margin-bottom: var(--spacing-lg);
@@ -685,9 +685,9 @@ main ul:not(.sidebar ul) {
 
 /* Asegurar que las tablas estén separadas de los formularios */
 table + #user-form,
-table + #course-form,
+table + #event-form,
 #user-form + table,
-#course-form + table {
+#event-form + table {
   margin-top: var(--spacing-2xl);
 }
 
@@ -754,7 +754,7 @@ main table {
 
 /* Espaciado para formularios en vista admin */
 main #user-form,
-main #course-form {
+main #event-form {
   margin-bottom: var(--spacing-2xl);
   clear: both;
 }
@@ -933,7 +933,7 @@ textarea:focus {
 /* Modo de alto contraste */
 @media (prefers-contrast: high) {
   :root {
-    --primary-color: #000080;
+    --primary-color: #db7fb2;
     --text-primary: #000000;
     --text-secondary: #333333;
     --border-color: #000000;
@@ -1113,7 +1113,7 @@ textarea:focus {
 /* Asegurar que los formularios en admin no se superpongan */
 .admin-main .form-container form,
 .admin-main #user-form form,
-.admin-main #course-form form {
+.admin-main #event-form form {
   position: relative !important;
   left: 0 !important;
   margin-left: 0 !important;
@@ -1128,7 +1128,7 @@ textarea:focus {
    CONTENEDORES DINÁMICOS Y FORMULARIOS
    =============================================== */
 #user-form,
-#course-form {
+#event-form {
   position: relative;
   display: block;
   width: 100%;
@@ -1140,7 +1140,7 @@ textarea:focus {
 
 /* Asegurar que los formularios dentro de estos contenedores tengan el espaciado correcto */
 #user-form form,
-#course-form form {
+#event-form form {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1160,7 +1160,7 @@ textarea:focus {
 
 /* Contenedores de elementos creados dinámicamente */
 #user-form > div,
-#course-form > div {
+#event-form > div {
   position: relative;
   width: 100%;
   margin-bottom: var(--spacing-lg);
@@ -1188,9 +1188,9 @@ textarea:focus {
 
 /* Asegurar que las tablas estén separadas de los formularios */
 table + #user-form,
-table + #course-form,
+table + #event-form,
 #user-form + table,
-#course-form + table {
+#event-form + table {
   margin-top: var(--spacing-2xl);
 }
 
@@ -1257,7 +1257,7 @@ main table {
 
 /* Espaciado para formularios en vista admin */
 main #user-form,
-main #course-form {
+main #event-form {
   margin-bottom: var(--spacing-2xl);
   clear: both;
 }

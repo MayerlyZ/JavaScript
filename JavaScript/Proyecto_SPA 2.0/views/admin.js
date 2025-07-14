@@ -1,30 +1,30 @@
 import { createFormComponent } from '../components/form.js';
-import { createCourseFormComponent } from '../components/courseForm.js';
-import { getUsers, getCourses, deleteItem, deleteCourse, getCourseById, getElementById} from '../js/api.js';
+import { createEventFormComponent } from '../components/courseForm.js';
+import { getUsers, getEvents, deleteItem, deleteEvent, getEventById, getElementById} from '../js/api.js';
 import { getCurrentUser, logout } from '../js/auth.js';
 
 export function adminView() {
   const user = getCurrentUser();
   const container = document.createElement('div');
   const isUsersView = window.location.hash === '#/admin/users';
-  const isCoursesView = window.location.hash === '#/admin/courses';
+  const isEventView = window.location.hash === '#/admin/events';
 
   // Solo crear el contenido principal, sin header ni sidebar duplicados
   container.innerHTML = `
     <header>
-      <h1>Sistema de Gestión</h1>
+      <h1>Sistema de Gestión de Eventos</h1>
       <div>Bienvenido, ${user.name} (<a href="#" id="logout">Cerrar sesión</a>)</div>
     </header>
     <nav class="sidebar">
       <ul>
         <li><a href="#/dashboard">Dashboard</a></li>
         <li><a href="#/admin/users">Gestionar Usuarios</a></li>
-        <li><a href="#/admin/courses">Gestionar Cursos</a></li>
+        <li><a href="#/admin/courses">Gestionar Eventos</a></li>
       </ul>
     </nav>
     <main class="admin-main">
       <div class="admin-content">
-        <h2>${isUsersView ? 'Gestionar Usuarios' : isCoursesView ? 'Gestionar Cursos' : 'Panel de Administrador'}</h2>
+        <h2>${isUsersView ? 'Gestionar Usuarios' : isEventView ? 'Gestionar Eventos' : 'Panel de Administrador'}</h2>
         ${isUsersView ? `
           <section class="form-section">
             <h3>Crear Usuario</h3>
@@ -41,17 +41,17 @@ export function adminView() {
               </table>
             </div>
           </section>
-        ` : isCoursesView ? `
+        ` : isEventView ? `
           <section class="form-section">
-            <h3>Crear Curso</h3>
+            <h3>Crear Evento</h3>
             <div id="course-form" class="form-container"></div>
           </section>
           <section class="table-section">
-            <h3>Lista de Cursos</h3>
+            <h3>Lista de Eventos</h3>
             <div class="table-wrapper">
               <table>
                 <thead>
-                  <tr><th>ID</th><th>Título</th><th>Descripción</th><th>Fecha de Inicio</th><th>Duración</th><th>Acciones</th></tr>
+                  <tr><th>ID</th><th>Título</th><th>Descripción</th><th>Fecha del evento</th><th>Duración</th><th>Acciones</th></tr>
                 </thead>
                 <tbody id="courses-table"></tbody>
               </table>
@@ -115,45 +115,45 @@ export function adminView() {
     });
   }
 
-  // Condicion para ver los cursos
-  if (isCoursesView) {
-    const courseForm = createCourseFormComponent({ mode: 'create', onSubmit: () => window.location.reload() });
-    container.querySelector('#course-form').appendChild(courseForm.element);
+  // Condicion para ver los eventos
+  if (isEventView) {
+    const eventForm = createEventFormComponent({ mode: 'create', onSubmit: () => window.location.reload() });
+    container.querySelector('#event-form').appendChild(eventForm.element);
 
-    getCourses().then((courses) => {
-      const coursesTable = container.querySelector('#courses-table');
-      courses.forEach((course) => {
+    getEvents().then((events) => {
+      const eventsTable = container.querySelector('#events-table');
+      events.forEach((events) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${course.id}</td>
-          <td>${course.title}</td>
-          <td>${course.description}</td>
-          <td>${course.startDate}</td>
-          <td>${course.duration}</td>
+          <td>${events.id}</td>
+          <td>${events.title}</td>
+          <td>${events.description}</td>
+          <td>${events.startDate}</td>
+          <td>${events.duration}</td>
           <td>
-            <button class="edit-course" data-id="${course.id}">Editar</button>
-            <button class="delete-course" data-id="${course.id}">Eliminar</button>
+            <button class="edit-event" data-id="${events.id}">Editar</button>
+            <button class="delete-event" data-id="${events.id}">Eliminar</button>
           </td>
         `;
         coursesTable.appendChild(tr);
       });
 
-      // Funcion para editar los cursos
-      container.querySelectorAll('.edit-course').forEach((btn) => {
+      // Funcion para editar los eventos
+      container.querySelectorAll('.edit-event').forEach((btn) => {
         btn.addEventListener('click', async () => {
-          const courseData = await getCourseById(btn.dataset.id);
-          const form = createCourseFormComponent({ mode: 'edit', course: courseData, onSubmit: () => window.location.reload() });
-          container.querySelector('#course-form').innerHTML = '';
-          container.querySelector('#course-form').appendChild(form.element);
+          const courseData = await getEventById(btn.dataset.id);
+          const form = createEventFormComponent({ mode: 'edit', course: courseData, onSubmit: () => window.location.reload() });
+          container.querySelector('#event-form').innerHTML = '';
+          container.querySelector('#event-form').appendChild(form.element);
           form.loadCourse(btn.dataset.id);
         });
       });
 
-      // Funcion para eliminar los cursos
-      container.querySelectorAll('.delete-course').forEach((btn) => {
+      // Funcion para eliminar los eventos
+      container.querySelectorAll('.delete-event').forEach((btn) => {
         btn.addEventListener('click', async () => {
           try {
-            await deleteCourse(btn.dataset.id);
+            await deleteEvent(btn.dataset.id);
             btn.closest('tr').remove();
           } catch (error) {
             alert(error.message);

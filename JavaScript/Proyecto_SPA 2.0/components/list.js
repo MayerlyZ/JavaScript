@@ -3,7 +3,7 @@ import { getAllItems, deleteItem } from "../js/api.js"; // Importamos funciones
 export function createListComponent(onEdit){
     // crea una lista de los elementos de la bd
     const container = document.createElement('div');
-    container.innerHTML = '<h2>Listado de estudiantes</h2>';
+    container.innerHTML = '<h2>Listado de Usuarios</h2>';
     const listEL = document.createElement('ul');
     container.appendChild(listEL);
 
@@ -25,7 +25,7 @@ export function createListComponent(onEdit){
                 Email:<strong>${item.email}</strong>
                 Phone:<strong>${item.phone}</strong>
                 EnrollNumber:<strong>${item.enrollNumber}</strong>
-                DateOfAdmission:<strong>${item.dateOfAdmission}</strong>
+                dateOfEvent:<strong>${item.dateOfEvent}</strong>
                 <button data-edit="${item.id}">Editar</button>
                 <button data-delete="${item.id}">Eliminar</button>
                 `;

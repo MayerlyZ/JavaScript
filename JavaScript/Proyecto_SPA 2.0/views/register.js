@@ -10,8 +10,6 @@ export function registerView(){
       <input type="email" id="email" placeholder="Correo electrónico" required>
       <input type="password" id="password" placeholder="Contraseña" required>
       <input type="text" id="phone" placeholder="Teléfono" required>
-      <input type="text" id="enrollNumber" placeholder="Número de matrícula" required>
-      <input type="date" id="dateOfAdmission" placeholder="Fecha de admisión" required>
       <button type="submit">Registrarse</button>
     </form>
     <p id="error" style="color: red;"></p>
@@ -30,8 +28,7 @@ export function registerView(){
       email: form.email.value.trim(),
       password: form.password.value.trim(),
       phone: form.phone.value.trim(),
-      enrollNumber: form.enrollNumber.value.trim(),
-      dateOfAdmission: form.dateOfAdmission.value.trim(),
+      dateOfEvent: form.dateOfEvent.value.trim(),
     };
 
     // Hace la validacion con la funcion register() y dependienmdo de la respuesta redirige al login o muestra un mensaje personalizado 

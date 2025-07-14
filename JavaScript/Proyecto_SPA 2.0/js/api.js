@@ -17,7 +17,7 @@ export async function getElementById(id) {
     return await res.json();
 }
 
-// Funcion para crear un nuevo usuario
+// Funcion para crear un nuevo evento
 export async function createItem(data) {
     const user = getCurrentUser();
     if(!user || user.role !== 'admin') {
@@ -32,7 +32,7 @@ export async function createItem(data) {
     return await res.json();
 }
 
-// Funcion para actualizar por id un usuario
+// Funcion para actualizar por id un evento
 export async function updateItem(id, data) {
     const user = getCurrentUser();
     if(!user || user.role !== 'admin') {
@@ -60,83 +60,83 @@ export async function deleteItem(id) {
     return await res.json();
 }
 
-// Funciones para courses
+// Funciones para eventos
 
-// Funcion para obtener los cursos
-export async function getCourses(){
+// Funcion para obtener los eventos
+export async function getEvent(){
     const res = await fetch(`${API_URL}/courses`);
-    if(!res.ok) throw new Error('Curso no encontrado');
+    if(!res.ok) throw new Error('Evento no encontrado');
     return await res.json();
 };
 
-// Funcion para obtener un curso por id
-export async function getCourseById(id) {
-    const res = await fetch(`${API_URL}/courses/${id}`);
-    if(!res.ok) throw new Error('Curso no encontrado');
+// Funcion para obtener un evento por id
+export async function getEventById(id) {
+    const res = await fetch(`${API_URL}/events/${id}`);
+    if(!res.ok) throw new Error('Evento no encontrado');
     return await res.json();
 }
 
-// Funcion para crear un nuevo curso
-export async function createCourse(data) {
+// Funcion para crear un nuevo evento
+export async function createEvent(data) {
     const user = getCurrentUser();
     if(!user || user.role !== 'admin') {
-        throw new Error('Solo admins pueden crear cursos');
+        throw new Error('Solo admins pueden crear eventos');
     }
     const res = await fetch(`${API_URL}/courses`, {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(data),
     });
-    if(!res.ok) throw new Error('Error al crear curso');
+    if(!res.ok) throw new Error('Error al crear evento');
     return await res.json();
 }
 
-// Funcion para actualizar por id un curso
-export async function updateCourse(id, data) {
+// Funcion para actualizar por id un evento
+export async function updateEvent(id, data) {
     const user = getCurrentUser();
     if(!user || user.role !== 'admin') {
-        throw new Error('Solo admins pueden actualizar los cursos');
+        throw new Error('Solo admins pueden actualizar los eventos');
     }
     const res = await fetch(`${API_URL}/courses/${id}`, {
         method: 'PUT',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(data)
     });
-    if(!res.ok) throw new Error('Error al actualizar los usuario');
+    if(!res.ok) throw new Error('Error al actualizar los eventos');
     return await res.json();
 }
 
-// Funcion para eliminar un curso por id
-export async function deleteCourse(id) {
+// Funcion para eliminar un evento por id
+export async function deleteEvent(id) {
     const user = getCurrentUser();
     if(!user || user.role !== 'admin') {
-        throw new Error('Solo admins pueden eliminar los cursos');
+        throw new Error('Solo admins pueden eliminar los eventos');
     }
-    const res = await fetch(`${API_URL}/courses/${id}`, {
+    const res = await fetch(`${API_URL}/events/${id}`, {
         method: 'Delete',
     });
-    if(!res.ok) throw new Error('Error al eliminar el curso');
+    if(!res.ok) throw new Error('Error al eliminar el evento');
     return await res.json();
 }
 
 // Funciones para Enrollments
 
-export async function enrollInCourse(userId, courseId) {
+export async function enrollInEvent(userId, eventId) {
     const user = getCurrentUser();
     if(!user || user.role !== 'userId') {
-        throw new Error('Solo puedes inscribirte con tu cuenta');
+        throw new Error('Solo puedes reservar con tu cuenta');
     }
     const res = await fetch(`${API_URL}/enrollments`, {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({ userId: parseInt(userId), courseId: parseInt(courseId) }),
     });
-    if(!res.ok) throw new Error('Error al inscribirse en el curso');
+    if(!res.ok) throw new Error('Error al reservar el evento');
     return await res.json();
 }
 
 export async function getEnrollmentsByUser(userId) {
     const res = await fetch(`${API_URL}/enrollments?userId=${userId}`);
-    if(!res.ok) throw new Error('Error al obtener los cursos inscritos');
+    if(!res.ok) throw new Error('Error al obtener los eventos reservados');
     return await res.json();
 }

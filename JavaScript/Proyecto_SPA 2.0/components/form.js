@@ -21,8 +21,8 @@ export function createFormComponent({onSubmit, mode = "read", user = null,} = {}
         <input type="text" id="name" placeholder="Nombre" value="${ user?.name || "" }" ${isEditMode ? "" : "disabled"} required>
         <input type="email" id="email" placeholder="Correo" value="${ user?.email || "" }" ${isEditMode ? "" : "disabled"} required>
         <input type="text" id="phone" placeholder="Telefono" value="${ user?.phone || "" }" ${isEditMode ? "" : "disabled"} required>
-        <input type="text" id="enrollNumber" placeholder="Matricula"value="${ user?.enrollNumber || "" }" ${isEditMode ? "" : "disabled"} required>
-        <input type="date" id="dateOfAdmision" placeholder="Fecha de admision" value="${ user?.dateOfAdmission || "" }" ${isEditMode ? "" : "disabled"} required>
+        <input type="text" id="enrollNumber" placeholder="Precio Evento"value="${ user?.enrollNumber || "" }" ${isEditMode ? "" : "disabled"} required>
+        <input type="date" id="dateOfEvent" placeholder="Fecha del evento" value="${ user?.dateOfEvent || "" }" ${isEditMode ? "" : "disabled"} required>
         ${
           isAdmin
             ? `
@@ -45,7 +45,7 @@ export function createFormComponent({onSubmit, mode = "read", user = null,} = {}
   const emailInput = container.querySelector("#email");
   const phoneInput = container.querySelector("#phone");
   const enrollNumberInput = container.querySelector("#enrollNumber");
-  const dateOfAdmissionInput = container.querySelector("#dateOfAdmision");
+  const dateOfEventInput = container.querySelector("#dateOfEvent");
   const roleInput = container.querySelector("#role");
   const message = container.querySelector("#formMessage");
 
@@ -60,23 +60,23 @@ export function createFormComponent({onSubmit, mode = "read", user = null,} = {}
       const email = emailInput.value.trim();
       const phone = phoneInput.value.trim();
       const enrollNumber = enrollNumberInput.value.trim();
-      const dateOfAdmission = dateOfAdmissionInput.value.trim();
+      const dateOfEvent = dateOfEventInput.value.trim();
       const role = roleInput ? roleInput.value : "visitor";
 
-      if (!name || !email || !phone || !enrollNumber || !dateOfAdmission || !role) {
+      if (!name || !email || !phone || !enrollNumber || !dateOfEvent || !role) {
         // Valida que los campos esten completos
         message.textContent = "Todos los campos son obligatorios";
         return;
       };
       // Dependiendo si editinId es null o no agrega o actualiza un usuario
       try {
-        const data = { name, email, phone, enrollNumber, dateOfAdmission, role,};
+        const data = { name, email, phone, enrollNumber, dateOfEvent, role,};
         if (editinId) {
           await updateItem(editinId, data);
-          message.textContent = "Estudiante actualizado correctamente";
+          message.textContent = "Evento actualizado correctamente";
         } else {
           await createItem(data);
-          message.textContent = "Estudiante creado correctamente";
+          message.textContent = "Evento creado correctamente";
         }
 
         // Resetea el formulario y el EditinId cada vez que se agrega o se crea un usuario
@@ -85,21 +85,21 @@ export function createFormComponent({onSubmit, mode = "read", user = null,} = {}
         if (onSubmit) onSubmit();
       } catch (error) {
         console.error(error);
-        message.textContent = error.message || "Error al guardar el estudiante";
+        message.textContent = error.message || "Error al guardar el usuario";
       }
     });
   }
 
   async function loadItems(id) {
     try {
-      // Carga los estudiantes en el form para poder editarlo
+      // Carga los usuarios en el form para poder editarlo
       const item = await getElementById(id);
       if (item) {
         nameInput.value = item.name;
         emailInput.value = item.email;
         phoneInput.value = item.phone;
         enrollNumberInput.value = item.enrollNumber;
-        dateOfAdmissionInput.value = item.dateOfAdmission;
+        dateOfEventInput.value = item.dateOfEvent;
         // Dependiendo del rol nos deja aditar o visualizar
         if (roleInput) roleInput.value = item.role;
         editinId = item.id;

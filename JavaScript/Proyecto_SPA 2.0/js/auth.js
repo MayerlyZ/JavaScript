@@ -24,7 +24,7 @@ export async function login(email, password) {
 }
 
 // Funcion para registrar un nuevo ususario
-export async function register({name, email, password, phone, enrollNumber, dateOfAdmission, role = 'visitor'}){   // Por defecto le agregamos el rol de visitante
+export async function register({name, email, password, phone, enrollNumber, dateOfEvent, role = 'visitor'}){   // Por defecto le agregamos el rol de visitante
     try{
         const users = await getUsers();
         // Validamos que el correo no este registrado ya
@@ -32,7 +32,7 @@ export async function register({name, email, password, phone, enrollNumber, date
         if (existingUser) {
             throw new Error('El correo electrónico ya está registrado');
         }
-        const newUser = await createItem({name, email, password, phone, enrollNumber, dateOfAdmission, role});
+        const newUser = await createItem({name, email, password, phone, enrollNumber, dateOfEvent, role});
         return newUser;  
     } catch (error) {
         throw new Error(error.message || 'Error al registrar el usuario');
